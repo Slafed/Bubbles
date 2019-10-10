@@ -17,7 +17,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void campaign(View v){
 
-        Intent intent = new Intent(this, levelSelectActivity.class);
+        Intent intent = new Intent(this, LevelSelectActivity.class);
         startActivity(intent);
     }
+
+    //public void endless(View v){
+
+    //}
 }
