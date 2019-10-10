@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- https://www.youtube.com/watch?v=Nn4-Vn7qk9k -->
+
+    <item
+        android:state_pressed="true"
+        android:drawable="@drawable/pop" />
+    <item
+        android:drawable="@drawable/bubblebutton"/>
+
+</selector>
