@@ -7,6 +7,18 @@
     tools:context=".MainActivity"
     android:background="@color/colorPrimary">
 
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="800dp"
+        android:layout_height="800dp"
+        android:layout_gravity="center"
+        android:background="#000000"
+        android:src="@drawable/upbubbles"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="@dimen/textViewWidth"
@@ -21,13 +33,27 @@
         app:layout_constraintVertical_bias="0.077" />
 
     <Button
+        android:id="@+id/campaignButton"
         android:layout_width="182dp"
         android:layout_height="170dp"
         android:background="@drawable/buttonshape"
         android:drawableTop="@drawable/bubblebutton"
+        android:text="Hello"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/endlessButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custombutton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.864" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
