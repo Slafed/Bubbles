@@ -13,6 +13,10 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.AppThemeBright);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = new Intent(this, LevelActivity.class);
+
+        startActivity(intent);
     }
 
     public void campaign(View v){
