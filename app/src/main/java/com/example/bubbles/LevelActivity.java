@@ -16,6 +16,7 @@ public class LevelActivity extends AppCompatActivity {
         setContentView(R.layout.activity_level);
 
         canvas = (CanvasView) findViewById(R.id.gameCanvas);
+
     }
 
     public void clearCanvas(View v) {

@@ -53,6 +53,7 @@ public class CanvasView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         // draw the mPath with the mPaint on the canvas when onDraw
+        mPath.addCircle(520,500, 500, Path.Direction.CW);
         canvas.drawPath(mPath, mPaint);
     }
 
@@ -64,6 +65,7 @@ public class CanvasView extends View {
     }
 
     // when ACTION_MOVE move touch according to the x,y values
+    /*
     private void moveTouch(float x, float y) {
         float dx = Math.abs(x - mX);
         float dy = Math.abs(y - mY);
@@ -72,7 +74,7 @@ public class CanvasView extends View {
             mX = x;
             mY = y;
         }
-    }
+    }*/
 
     public void clearCanvas() {
         mPath.reset();
@@ -81,7 +83,7 @@ public class CanvasView extends View {
 
     // when ACTION_UP stop touch
     private void upTouch() {
-        mPath.lineTo(mX, mY);
+       //mPath.lineTo(mX, mY);
     }
 
     //override the onTouchEvent
@@ -95,10 +97,10 @@ public class CanvasView extends View {
                 startTouch(x, y);
                 invalidate();
                 break;
-            case MotionEvent.ACTION_MOVE:
+           /* case MotionEvent.ACTION_MOVE:
                 moveTouch(x, y);
                 invalidate();
-                break;
+                break;*/
             case MotionEvent.ACTION_UP:
                 upTouch();
                 invalidate();
@@ -106,5 +108,8 @@ public class CanvasView extends View {
         }
         return true;
     }
+
+    //public void drawCirle(float cx, float cy, float radius, Paint paint){ }
+
 }
 
