@@ -8,54 +8,62 @@
     android:orientation="vertical"
     tools:context=".LevelSelectActivity">
 
-    <Button
-        android:id="@+id/button1"
-        style="@style/AppThemeBright"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/buttonMarginStart"
-        android:layout_marginTop="@dimen/buttonMarginTop"
-        android:background="@drawable/circles"
-        android:text="1"/>
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/button1"
+            style="@style/AppThemeBright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/buttonMarginStart"
+            android:layout_marginTop="@dimen/buttonMarginTop"
+            android:background="@drawable/circles"
+            android:text="1"/>
 
-    <Button
-        android:id="@+id/button2"
-        style="@style/AppThemeBright"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/buttonMarginStart"
-        android:layout_marginTop="@dimen/buttonMarginTop"
-        android:background="@drawable/circles"
-        android:text="2"/>
+        <Button
+            android:id="@+id/button2"
+            style="@style/AppThemeBright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/buttonMarginStart"
+            android:layout_marginTop="@dimen/buttonMarginTop"
+            android:background="@drawable/circles"
+            android:text="2"/>
 
-    <Button
-        android:id="@+id/button3"
-        style="@style/AppThemeBright"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/buttonMarginStart"
-        android:layout_marginTop="@dimen/buttonMarginTop"
-        android:background="@drawable/circles"
-        android:text="3"/>
+        <Button
+            android:id="@+id/button3"
+            style="@style/AppThemeBright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/buttonMarginStart"
+            android:layout_marginTop="@dimen/buttonMarginTop"
+            android:background="@drawable/circles"
+            android:text="3"/>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/button4"
-        style="@style/AppThemeBright"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/buttonMarginStart"
-        android:layout_marginTop="@dimen/buttonMarginTop"
-        android:background="@drawable/circles"
-        android:text="4"/>
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/button4"
+            style="@style/AppThemeBright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/buttonMarginStart"
+            android:layout_marginTop="@dimen/buttonMarginTop"
+            android:background="@drawable/circles"
+            android:text="4"/>
 
-    <Button
-        android:id="@+id/button5"
-        style="@style/AppThemeBright"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/buttonMarginStart"
-        android:layout_marginTop="@dimen/buttonMarginTop"
-        android:background="@drawable/circles"
-        android:text="5"/>
+        <Button
+            android:id="@+id/button5"
+            style="@style/AppThemeBright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/buttonMarginStart"
+            android:layout_marginTop="@dimen/buttonMarginTop"
+            android:background="@drawable/circles"
+            android:text="5"/>
+    </LinearLayout>
 
 </LinearLayout>
