@@ -16,12 +16,16 @@ public class LevelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(new CanvasView((this)));
-
+/*
         //canvas = (CanvasView) findViewById(R.id.gameCanvas);
-
+*/
+    }
+/*
+    public void clearCanvas(View v) {
+        canvas.clearCanvas();
     }
 
-    /*public void clearCanvas(View v) {
-        canvas.clearCanvas();
-      }*/
+    public void start(View v) {
+        canvas.start();
+    }*/
 }

@@ -21,8 +21,14 @@ public class CanvasView extends SurfaceView {
 
     private Paint paint;
 
-    private int x = 200;
-    private int y = 1000;
+    private int x = 700;
+    private int y = 1900;
+    private int timer = 0;
+    private int bubbleCount = 0;
+    private Bubble[] bubblesArray;
+
+    // Bubblearray hold all new bubble, need a final variable for radius 
+
     public CanvasView(Context context) {
         super(context);
 
@@ -96,11 +102,32 @@ public class CanvasView extends SurfaceView {
     @Override
     protected void onDraw(Canvas canvas)
     {
-       canvas.drawColor(Color.GREEN);
-       x+=5;
-       y-=8;
-       canvas.drawCircle(x,y,200, paint);
+
+        canvas.drawColor(Color.GREEN);
+        y-=1;
+        int rand = (int)Math.floor(Math.random()*101);
+
+        if((x-100) < 0)
+            x+= 10;
+        else if((x+100) > getWidth())
+            x-= 10;
+        else if(rand < 50)
+            x+=10;
+        else
+            x-=10;
+
+        canvas.drawCircle(x,y,100, paint);
+
 
     }
+
+    public int move(int x)
+    {
+
+
+
+        return x;
+    }
+
 }
 
