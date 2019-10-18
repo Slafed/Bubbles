@@ -27,7 +27,7 @@ public class CanvasView extends SurfaceView {
     private int bubbleCount = 0;
     private Bubble[] bubblesArray;
 
-    // Bubblearray hold all new bubble, need a final variable for radius 
+    // Bubblearray hold all new bubble, need a final variable for radius
 
     public CanvasView(Context context) {
         super(context);
