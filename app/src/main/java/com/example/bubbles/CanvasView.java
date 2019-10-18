@@ -8,108 +8,99 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 
-public class CanvasView extends View {
+import androidx.annotation.Nullable;
 
-    public int width;
-    public int height;
-    private Bitmap mBitmap;
-    private Canvas mCanvas;
-    private Path mPath;
-    Context context;
-    private Paint mPaint;
-    private float mX, mY;
-    private static final float TOLERANCE = 5;
+public class CanvasView extends SurfaceView {
 
-    public CanvasView(Context c, AttributeSet attrs) {
-        super(c, attrs);
-        context = c;
+    private SurfaceHolder holder;
+    private CanvasThread canvasThread;
 
-        // we set a new Path
-        mPath = new Path();
+    private Paint paint;
 
-        // and we set a new Paint with the desired attributes
-        mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-        mPaint.setColor(Color.BLACK);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeJoin(Paint.Join.ROUND);
-        mPaint.setStrokeWidth(4f);
+    private int x = 200;
+    private int y = 1000;
+    public CanvasView(Context context) {
+        super(context);
+
+        init(null);
+
+        canvasThread = new CanvasThread(this);
+
+        holder = getHolder();
+        holder.addCallback(new SurfaceHolder.Callback() {
+            @Override
+            public void surfaceCreated(SurfaceHolder surfaceHolder)
+            {
+                canvasThread.setRunning(true);
+                canvasThread.start();
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2)
+            {
+
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder surfaceHolder)
+            {
+                boolean retry = true;
+                canvasThread.setRunning(false);
+                while(retry)
+                {
+                    try
+                    {
+                        //checks if thread is destroyed
+                        canvasThread.join();
+                        retry = false;
+                    }
+                    catch (InterruptedException e)
+                    {
+                    }
+
+                }
+            }
+        });
     }
 
-    // override onSizeChanged
+    public CanvasView(Context context, AttributeSet attrs) {
+        super(context,attrs);
+
+        init(attrs);
+    }
+
+    public CanvasView(Context context, AttributeSet attrs, int defStylesAttr) {
+        super(context,attrs);
+
+        init(attrs);
+    }
+
+    public CanvasView(Context context, AttributeSet attrs, int defStylesAttr, int defStyleRes) {
+        super(context,attrs);
+
+        init(attrs);
+    }
+
+    private void init(@Nullable AttributeSet set)
+    {
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(Color.parseColor("#FFFFFF"));
+        if(set == null)
+            return;
+    }
+
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
+    protected void onDraw(Canvas canvas)
+    {
+       canvas.drawColor(Color.GREEN);
+       x+=5;
+       y-=8;
+       canvas.drawCircle(x,y,200, paint);
 
-        // your Canvas will draw onto the defined Bitmap
-        mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        mCanvas = new Canvas(mBitmap);
     }
-
-    // override onDraw
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        // draw the mPath with the mPaint on the canvas when onDraw
-        mPath.addCircle(520,500, 500, Path.Direction.CW);
-        canvas.drawPath(mPath, mPaint);
-    }
-
-    // when ACTION_DOWN start touch according to the x,y values
-    private void startTouch(float x, float y) {
-        mPath.moveTo(x, y);
-        mX = x;
-        mY = y;
-    }
-
-    // when ACTION_MOVE move touch according to the x,y values
-    /*
-    private void moveTouch(float x, float y) {
-        float dx = Math.abs(x - mX);
-        float dy = Math.abs(y - mY);
-        if (dx >= TOLERANCE || dy >= TOLERANCE) {
-            mPath.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2);
-            mX = x;
-            mY = y;
-        }
-    }*/
-
-    public void clearCanvas() {
-        mPath.reset();
-        invalidate();
-    }
-
-    // when ACTION_UP stop touch
-    private void upTouch() {
-       //mPath.lineTo(mX, mY);
-    }
-
-    //override the onTouchEvent
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        float x = event.getX();
-        float y = event.getY();
-
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                startTouch(x, y);
-                invalidate();
-                break;
-           /* case MotionEvent.ACTION_MOVE:
-                moveTouch(x, y);
-                invalidate();
-                break;*/
-            case MotionEvent.ACTION_UP:
-                upTouch();
-                invalidate();
-                break;
-        }
-        return true;
-    }
-
-    //public void drawCirle(float cx, float cy, float radius, Paint paint){ }
-
 }
 
