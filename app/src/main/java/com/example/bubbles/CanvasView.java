@@ -21,7 +21,8 @@ public class CanvasView extends SurfaceView {
 
     private Paint paint;
 
-    private int x = 30;
+    private int x = 200;
+    private int y = 1000;
     public CanvasView(Context context) {
         super(context);
 
@@ -87,7 +88,7 @@ public class CanvasView extends SurfaceView {
     private void init(@Nullable AttributeSet set)
     {
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-
+        paint.setColor(Color.parseColor("#FFFFFF"));
         if(set == null)
             return;
     }
@@ -95,9 +96,10 @@ public class CanvasView extends SurfaceView {
     @Override
     protected void onDraw(Canvas canvas)
     {
-       canvas.drawColor(Color.BLUE);
-       x++;
-       canvas.drawCircle(x,50,20, paint);
+       canvas.drawColor(Color.GREEN);
+       x+=5;
+       y-=8;
+       canvas.drawCircle(x,y,200, paint);
 
     }
 }
