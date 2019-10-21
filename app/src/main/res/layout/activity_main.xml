@@ -47,27 +47,27 @@
 
     <Button
         android:id="@+id/endlessButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custombutton"
+        android:layout_width="420dp"
+        android:layout_height="480dp"
+        android:background="@drawable/endless"
         android:onClick="campaign"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.864" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/tutorial"
-        android:layout_width="105dp"
-        android:layout_height="75dp"
-        android:background="@drawable/custombutton"
+        android:layout_width="228dp"
+        android:layout_height="260dp"
+        android:background="@drawable/help"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975" />
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
