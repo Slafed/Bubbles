@@ -14,6 +14,8 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+
 public class CanvasView extends SurfaceView {
 
     private SurfaceHolder holder;
@@ -21,11 +23,11 @@ public class CanvasView extends SurfaceView {
 
     private Paint paint;
 
-    private int x = 700;
-    private int y = 1900;
+    private int x = 700; // 0 - (getWidth - 100)
+    private int y = 2200; //2200
     private int timer = 0;
     private int bubbleCount = 0;
-    private Bubble[] bubblesArray;
+    private ArrayList<Bubble> bubblesArray = new ArrayList<Bubble>();
 
     // Bubblearray hold all new bubble, need a final variable for radius
 
@@ -102,9 +104,35 @@ public class CanvasView extends SurfaceView {
     @Override
     protected void onDraw(Canvas canvas)
     {
-
         canvas.drawColor(Color.GREEN);
-        y-=1;
+
+
+
+        timer++;
+        if(timer >= 10)
+        {
+            bubbleCount++;
+
+            int randX = (int)Math.floor(Math.random()*getWidth()-700) + 700;
+
+            bubblesArray.add(new Bubble(randX,2200));
+
+
+            timer = 0;
+        }
+
+
+
+        for(int i = 0; i < bubblesArray.size(); i++)
+        {
+            move(bubblesArray.get(i), canvas);
+        }
+/*
+        bubblesArray.add(new Bubble(x,2200));
+
+        canvas.drawCircle(bubblesArray.get(0).getX(),y,100, paint);
+*/
+/*
         int rand = (int)Math.floor(Math.random()*101);
 
         if((x-100) < 0)
@@ -117,16 +145,31 @@ public class CanvasView extends SurfaceView {
             x-=10;
 
         canvas.drawCircle(x,y,100, paint);
-
+*/
 
     }
 
-    public int move(int x)
+    public void move(Bubble b, Canvas canvas)
     {
+        int rand = (int)Math.floor(Math.random()*101);
+        b.moveY();
+       /*
+        float tempX = b.getX();
+        float tempY = b.getY() - 10;
+        */
+
+        if((b.getX()-100) < 0)
+            b.moveX(10);
+        else if((b.getX()+100) > getWidth())
+            b.moveX(-10);
+        else if(rand < 50)
+            b.moveX(10);
+        else
+            b.moveX(-10);
+
+        canvas.drawCircle(b.getX(),b.getY(),100, paint);
 
 
-
-        return x;
     }
 
 }
