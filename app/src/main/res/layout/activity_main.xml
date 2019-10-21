@@ -47,22 +47,22 @@
 
     <Button
         android:id="@+id/endlessButton"
-        android:layout_width="420dp"
-        android:layout_height="480dp"
-        android:background="@drawable/endless"
+        android:layout_width="204dp"
+        android:layout_height="221dp"
+        android:background="@drawable/bubE"
         android:onClick="campaign"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.835" />
 
     <Button
         android:id="@+id/tutorial"
-        android:layout_width="228dp"
-        android:layout_height="260dp"
-        android:background="@drawable/help"
+        android:layout_width="130dp"
+        android:layout_height="145dp"
+        android:background="@drawable/bubT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
