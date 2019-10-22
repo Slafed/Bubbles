@@ -109,7 +109,7 @@ public class CanvasView extends SurfaceView {
 
 
         timer++;
-        if(timer >= 10)
+        if(timer >= 20)
         {
             bubbleCount++;
 
