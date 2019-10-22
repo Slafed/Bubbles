@@ -35,33 +35,34 @@
 
     <Button
         android:id="@+id/campaignButton"
-        android:layout_width="182dp"
-        android:layout_height="170dp"
-        android:background="@drawable/buttonshape"
-        android:drawableTop="@drawable/bubblebutton"
-        android:text="Hello"
+        android:layout_width="@dimen/buttonWidth"
+        android:layout_height="@dimen/buttonHeight"
+        android:background="@drawable/bub"
+        android:onClick="campaign"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.55"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.323" />
 
     <Button
         android:id="@+id/endlessButton"
-        android:layout_width="204dp"
-        android:layout_height="221dp"
+        android:layout_width="@dimen/buttonWidth"
+        android:layout_height="@dimen/buttonHeight"
         android:background="@drawable/bube"
         android:onClick="campaign"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintHorizontal_bias="0.55"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.835" />
+        app:layout_constraintVertical_bias="0.803" />
 
     <Button
         android:id="@+id/tutorial"
-        android:layout_width="130dp"
-        android:layout_height="145dp"
+        android:layout_width="85dp"
+        android:layout_height="100dp"
         android:background="@drawable/bubt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
