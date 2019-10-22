@@ -12,4 +12,6 @@
     <dimen name="fontLarge">40sp</dimen>
     <dimen name="buttonMarginStart">32dp</dimen>
     <dimen name="buttonMarginTop">60dp</dimen>
+    <dimen name="buttonWidth">205dp</dimen>
+    <dimen name="buttonHeight">220dp</dimen>
 </resources>
