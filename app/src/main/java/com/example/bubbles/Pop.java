@@ -14,7 +14,7 @@ public class Pop extends AppCompatActivity {
         setContentView(R.layout.activity_pop);
 
         Log.d("Denna", "inside Pop onCreate");
-
+        //commit
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
