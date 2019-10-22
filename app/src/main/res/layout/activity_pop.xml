@@ -4,6 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Pop">
+
+    <TextView
+        android:id="@+id/popText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:padding="@dimen/topPadding"
+        android:textColor="@color/colorPrimary"
+        android:text="Sodium, atomic number 11, was first isolated by Humphry Davy in 1807. A chemical component of salt, he named it Na in honor of the saltiest region on earth, North America."
+        android:textSize="@dimen/fontSize"
+
+
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

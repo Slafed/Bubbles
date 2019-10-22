@@ -39,6 +39,7 @@
         android:layout_height="@dimen/buttonHeight"
         android:background="@drawable/bub"
         android:onClick="campaign"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.55"
