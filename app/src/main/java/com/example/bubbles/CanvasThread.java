@@ -33,6 +33,7 @@ public class CanvasThread extends Thread{
                     view.onDraw(c);
                 }
             }
+            catch(Exception e){}
             finally
             {
                 if(c != null)

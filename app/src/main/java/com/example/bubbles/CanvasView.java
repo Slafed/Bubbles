@@ -26,6 +26,7 @@ public class CanvasView extends SurfaceView {
     private int x = 700; // 0 - (getWidth - 100)
     private int y = 2200; //2200
     private int timer = 0;
+    private  int radius = 100;
     private int bubbleCount = 0;
     private ArrayList<Bubble> bubblesArray = new ArrayList<Bubble>();
 
@@ -109,7 +110,7 @@ public class CanvasView extends SurfaceView {
 
 
         timer++;
-        if(timer >= 20)
+        if(timer >= 600)
         {
             bubbleCount++;
 
@@ -167,10 +168,29 @@ public class CanvasView extends SurfaceView {
         else
             b.moveX(-10);
 
-        canvas.drawCircle(b.getX(),b.getY(),100, paint);
-
+        canvas.drawCircle(b.getX(),b.getY(),radius, paint);
 
     }
+/*
+    public boolean onTouchEvent(MotionEvent event){
+        boolean value = super.onTouchEvent(event);
+
+        switch(event.getAction()) {
+            case MotionEvent.ACTION_DOWN:{
+
+                return true;
+            }
+
+            case MotionEvent.ACTION_MOVE:{
+                float tempX = event.getX();
+                float tempY = event.getY();
+
+                double dx = Math.pow(tempX - x, 2);
+                double dy = Math.pow(tempY - y, 2);
+            }
+        }
+    }*/
 
 }
 
+// AHMER REMEMBER 17:07
