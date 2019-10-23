@@ -11,13 +11,20 @@
         android:id="@+id/popText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
+        android:fontFamily="@font/aclonica"
         android:padding="@dimen/topPadding"
+        android:text="In campaign mode there will be a select
+set of  levels in which the player must pop the bubbles before they reach
+the top (to receive points) and avoid the bad bubbles. In endless mode
+there will be a variety of bubbles that will rapidly appear which gets harder as time goes on (same concept applies)."
+        android:textAlignment="center"
         android:textColor="@color/colorPrimary"
-        android:text="Sodium, atomic number 11, was first isolated by Humphry Davy in 1807. A chemical component of salt, he named it Na in honor of the saltiest region on earth, North America."
-        android:textSize="@dimen/fontSize"
+        android:textSize="@dimen/popText"
 
 
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
