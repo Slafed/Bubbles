@@ -31,6 +31,8 @@ public class CanvasView extends SurfaceView {
     //private float x = 700f; // 0 - (getWidth - 100)
     //private float y = 2200f; //2200
     private int timer = 0;
+    private int permaTimer = 0;
+    private int timeLimit = 10;
     private  float radius = 100f;
     private int bubbleCount = 0;
     private ArrayList<Bubble> bubblesArray = new ArrayList<Bubble>();
@@ -119,12 +121,16 @@ public class CanvasView extends SurfaceView {
     protected void onDraw(Canvas canvas)
     {
         canvas.drawColor(Color.parseColor("#5EB7FC"));
+        permaTimer++;
+        timeLimit = 360;
 
-        if (score<winCondition) {
+        if (score<winCondition && timeLimit-permaTimer > 0) {
             String scorStr = "Score: " + score;
             String winStr = "Reach " + winCondition + " points to win";
+            String loseStr = "You Lose In: " + (timeLimit-permaTimer)/60 + " seconds";
             canvas.drawText(scorStr, 150, 125, scorePaint);
             canvas.drawText(winStr, 150, 1500, winPaint);
+            canvas.drawText(loseStr,  150, 1700, winPaint);
             timer++;
 
             if (timer >= 20) {
@@ -155,10 +161,14 @@ public class CanvasView extends SurfaceView {
 
             }
         }
-        else
+        else if(score>winCondition)
         {
-            canvas.drawText("You Win!", 350, 700, scorePaint);
+            String winText = "You Win! With " + (timeLimit-permaTimer)/60 + " second to spare";
+            canvas.drawText(winText, 350, 700, scorePaint);
 
+        }
+        else if(timeLimit-permaTimer <=0){
+            canvas.drawText("You Lose! :(", 350, 700, scorePaint);
         }
         /*
         bubblesArray.add(new Bubble(x,2200));
