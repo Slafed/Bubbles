@@ -143,7 +143,7 @@ public class CanvasView extends SurfaceView {
 
                 timer = 0;
             }
-
+//bruh
 
             for (int i = 0; i < bubblesArray.size(); i++) {
                 if (bubblesArray.get(i).getY() + radius > 0) {
