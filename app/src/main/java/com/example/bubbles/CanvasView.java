@@ -121,10 +121,10 @@ public class CanvasView extends SurfaceView {
     protected void onDraw(Canvas canvas)
     {
         canvas.drawColor(Color.parseColor("#5EB7FC"));
-        permaTimer++;
-        timeLimit = 360;
+        timeLimit = 3600;
 
         if (score<winCondition && timeLimit-permaTimer > 0) {
+            permaTimer++;
             String scorStr = "Score: " + score;
             String winStr = "Reach " + winCondition + " points to win";
             String loseStr = "You Lose In: " + (timeLimit-permaTimer)/60 + " seconds";
@@ -161,10 +161,10 @@ public class CanvasView extends SurfaceView {
 
             }
         }
-        else if(score>winCondition)
+        else if(score>=winCondition)
         {
             String winText = "You Win! With " + (timeLimit-permaTimer)/60 + " second to spare";
-            canvas.drawText(winText, 350, 700, scorePaint);
+            canvas.drawText(winText, 150, 700, scorePaint);
 
         }
         else if(timeLimit-permaTimer <=0){
