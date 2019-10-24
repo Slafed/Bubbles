@@ -31,6 +31,7 @@ public class CanvasView extends SurfaceView {
     //private float x = 700f; // 0 - (getWidth - 100)
     //private float y = 2200f; //2200
     private int timer = 0;
+    private int speed;
     private int permaTimer = 0;
     private int timeLimit = 10;
     private  float radius = 100f;
@@ -38,12 +39,12 @@ public class CanvasView extends SurfaceView {
     private ArrayList<Bubble> bubblesArray = new ArrayList<Bubble>();
     private int score = 0;
     private int winCondition = 200;
-
+    private int levelNum;
     // Bubblearray hold all new bubble, need a final variable for radius
 
-    public CanvasView(Context context) {
+    public CanvasView(Context context, int level) {
         super(context);
-
+        levelNum=level;
         init(null);
 
         canvasThread = new CanvasThread(this);
@@ -133,7 +134,27 @@ public class CanvasView extends SurfaceView {
             canvas.drawText(loseStr,  150, 1700, winPaint);
             timer++;
 
-            if (timer >= 20) {
+            if(levelNum == 1) {
+                speed=20;
+            }
+            else if(levelNum == 2){
+                speed=15;
+            }
+            else if(levelNum == 3){
+                speed=10;
+            }
+            else if(levelNum == 4){
+                speed=5;
+            }
+            else if(levelNum == 5){
+                speed=2;
+            }
+            else
+            {
+                speed=60;
+            }
+
+            if (timer >= speed) {
                 bubbleCount++;
 
                 int randX = (int) Math.floor(Math.random() * getWidth() - 700) + 700;
@@ -233,7 +254,7 @@ public class CanvasView extends SurfaceView {
 
                     if(dx + dy < Math.pow(radius,2))
                     {
-                        score+=10;
+                        score+=25;
 
                         Bubble popPointer = bubblesArray.get(i);
                         bubblesArray.remove(i);
