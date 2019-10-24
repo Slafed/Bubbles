@@ -122,7 +122,7 @@ public class CanvasView extends SurfaceView {
     {
         canvas.drawColor(Color.parseColor("#5EB7FC"));
         permaTimer++;
-        timeLimit = 360;
+        timeLimit = 3600;
 
         if (score<winCondition && timeLimit-permaTimer > 0) {
             String scorStr = "Score: " + score;
