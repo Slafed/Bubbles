@@ -1,8 +1,11 @@
 package com.example.bubbles;
 
 import android.graphics.Paint;
+import android.view.View;
 
-public class Bubble {
+import javax.security.auth.Destroyable;
+
+public class Bubble implements Destroyable {
     private float x;
     private float y;
     final float radius = 100;
@@ -37,6 +40,7 @@ public class Bubble {
     {
         this.y -=10;
     }
+
 
 
 }

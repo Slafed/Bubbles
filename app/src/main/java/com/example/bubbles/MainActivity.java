@@ -16,10 +16,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(this, LevelActivity.class);
-
-        startActivity(intent);
-
         Button b = (Button) findViewById(R.id.tutorial);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //public void endless(View v){
-
-    //}
+    public void endless(View v){
+        Intent intent = new Intent(this, LevelActivity.class);
+        startActivity(intent);
+    }
 }
