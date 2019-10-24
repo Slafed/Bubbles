@@ -10,7 +10,7 @@ import android.view.Window;
 public class LevelActivity extends AppCompatActivity {
 
     private CanvasView canvas;
-
+    private final int SELECTED_LEVEL = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
