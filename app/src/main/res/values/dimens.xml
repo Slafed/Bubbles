@@ -9,6 +9,7 @@
     <dimen name="topPadding">10dp</dimen>
     <dimen name="editTextPadding">10dp</dimen>
     <dimen name="fontSize">25sp</dimen>
+    <dimen name="titleSize">70sp</dimen>
     <dimen name="fontLarge">40sp</dimen>
     <dimen name="buttonMarginStart">32dp</dimen>
     <dimen name="buttonMarginTop">60dp</dimen>
