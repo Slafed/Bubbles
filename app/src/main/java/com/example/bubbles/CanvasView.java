@@ -31,15 +31,15 @@ public class CanvasView extends SurfaceView {
     //private float x = 700f; // 0 - (getWidth - 100)
     //private float y = 2200f; //2200
     private int timer = 0;
-    private int speed;
+    private float speed;
     private int permaTimer = 0;
     private int timeLimit = 10;
     private  float radius = 100f;
     private int bubbleCount = 0;
     private ArrayList<Bubble> bubblesArray = new ArrayList<Bubble>();
     private int score = 0;
-    private int winCondition = 200;
-    private int levelNum;
+    private int winCondition = 2000;
+    private int levelNum = 0;
     // Bubblearray hold all new bubble, need a final variable for radius
 
     public CanvasView(Context context, int level) {
@@ -122,7 +122,30 @@ public class CanvasView extends SurfaceView {
     protected void onDraw(Canvas canvas)
     {
         canvas.drawColor(Color.parseColor("#5EB7FC"));
-        timeLimit = 3600;
+        if (levelNum == 1)
+        {
+            timeLimit = 3600;
+        }
+        else if (levelNum == 2)
+        {
+            timeLimit = 4200;
+        }
+        else if (levelNum == 3)
+        {
+            timeLimit = 5400;
+        }
+        else if (levelNum == 4)
+        {
+            timeLimit = 5400;
+        }
+        else if (levelNum == 5)
+        {
+            timeLimit = 7200;
+        }
+        else if (levelNum == 0)
+        {
+
+        }
 
         if (score<winCondition && timeLimit-permaTimer > 0) {
             permaTimer++;
@@ -138,20 +161,25 @@ public class CanvasView extends SurfaceView {
                 speed=20;
             }
             else if(levelNum == 2){
-                speed=15;
+                speed=20;
+                winCondition=3000;
+
             }
             else if(levelNum == 3){
-                speed=10;
+                speed=20;
+                winCondition=5000;
             }
             else if(levelNum == 4){
-                speed=5;
+                speed=15;
+                winCondition=8000;
             }
             else if(levelNum == 5){
-                speed=2;
+                speed=15;
+                winCondition=15000;
             }
-            else
+            else if(levelNum == 0)
             {
-                speed=60;
+                speed=10 - permaTimer/600;
             }
 
             if (timer >= speed) {
@@ -218,7 +246,32 @@ public class CanvasView extends SurfaceView {
     public void move(Bubble b, Canvas canvas)
     {
         int rand = (int)Math.floor(Math.random()*101);
-        b.moveY();
+
+        if(levelNum == 1)
+        {
+            b.moveY(10);
+        }
+        else if(levelNum == 2)
+        {
+            b.moveY(15);
+        }
+        else if(levelNum == 3)
+        {
+            b.moveY(20);
+        }
+        else if(levelNum == 4)
+        {
+            b.moveY(25);
+        }
+        else if(levelNum == 5)
+        {
+            b.moveY(30);
+        }
+        else if(levelNum == 0)
+        {
+            float speed = 10 + permaTimer/1200;
+            b.moveY(speed);
+        }
        /*
         float tempX = b.getX();
         float tempY = b.getY() - 10;

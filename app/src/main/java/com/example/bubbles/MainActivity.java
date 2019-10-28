@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void endless(View v){
         Intent intent = new Intent(this, LevelActivity.class);
+        intent.putExtra(LevelActivity.SELECTED_LEVEL, "0") ;
         startActivity(intent);
     }
 }
