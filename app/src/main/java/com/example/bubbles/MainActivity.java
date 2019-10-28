@@ -3,6 +3,7 @@ package com.example.bubbles;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.bubblesound);
+        mediaPlayer.start();
+
     }
 
     public void campaign(View v){
