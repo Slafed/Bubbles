@@ -38,7 +38,7 @@
         android:id="@+id/campaignButton"
         android:layout_width="@dimen/buttonWidth"
         android:layout_height="@dimen/buttonHeight"
-        android:background="@drawable/bub"
+        android:background="@drawable/custombutton"
         android:onClick="campaign"
 
         app:layout_constraintBottom_toBottomOf="parent"

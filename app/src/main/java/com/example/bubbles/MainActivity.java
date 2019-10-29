@@ -3,6 +3,7 @@ package com.example.bubbles;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         setTheme(R.style.AppThemeBright);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -24,10 +26,13 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Denna", "inside setOnClickListener");
                 startActivity(new Intent(MainActivity.this,Pop.class));
 
+
             }
         });
 
-        MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.bubblesound);
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.bubblesound);
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mediaPlayer.setLooping(true);
         mediaPlayer.start();
 
     }
@@ -42,4 +47,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LevelActivity.class);
         startActivity(intent);
     }
+
 }
