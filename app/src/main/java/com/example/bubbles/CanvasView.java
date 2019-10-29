@@ -31,7 +31,7 @@ public class CanvasView extends SurfaceView {
     //private float x = 700f; // 0 - (getWidth - 100)
     //private float y = 2200f; //2200
     private int timer = 0;
-    private float speed;
+    private float speed = 20;
     private int permaTimer = 0;
     private int timeLimit = 10;
     private  float radius = 100f;
@@ -129,29 +129,41 @@ public class CanvasView extends SurfaceView {
         else if (levelNum == 2)
         {
             timeLimit = 4200;
+            winCondition=3000;
         }
         else if (levelNum == 3)
         {
             timeLimit = 5400;
+            winCondition=5000;
         }
         else if (levelNum == 4)
         {
             timeLimit = 5400;
+            winCondition=8000;
         }
         else if (levelNum == 5)
         {
             timeLimit = 7200;
+            winCondition=15000;
         }
         else if (levelNum == 0)
         {
-
+            timeLimit++;
+            winCondition = 5000000;
         }
 
         if (score<winCondition && timeLimit-permaTimer > 0) {
             permaTimer++;
+
             String scorStr = "Score: " + score;
             String winStr = "Reach " + winCondition + " points to win";
             String loseStr = "You Lose In: " + (timeLimit-permaTimer)/60 + " seconds";
+
+            if(levelNum == 0)
+            {
+                loseStr = " ";
+                winStr = "Dont Let Score Reach 0";
+            }
             canvas.drawText(scorStr, 150, 125, scorePaint);
             canvas.drawText(winStr, 150, 1500, winPaint);
             canvas.drawText(loseStr,  150, 1700, winPaint);
@@ -162,24 +174,23 @@ public class CanvasView extends SurfaceView {
             }
             else if(levelNum == 2){
                 speed=20;
-                winCondition=3000;
 
             }
             else if(levelNum == 3){
                 speed=20;
-                winCondition=5000;
             }
             else if(levelNum == 4){
                 speed=15;
-                winCondition=8000;
             }
             else if(levelNum == 5){
                 speed=15;
-                winCondition=15000;
             }
             else if(levelNum == 0)
             {
-                speed=10 - permaTimer/600;
+                if(speed>10)
+                {
+                    speed=20 - permaTimer/600;
+                }
             }
 
             if (timer >= speed) {
