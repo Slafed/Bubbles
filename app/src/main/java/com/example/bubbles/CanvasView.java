@@ -170,7 +170,7 @@ public class CanvasView extends SurfaceView {
             timer++;
 
             if(levelNum == 1) {
-                speed=20;
+                speed=30;
             }
             else if(levelNum == 2){
                 speed=20;
@@ -230,7 +230,11 @@ public class CanvasView extends SurfaceView {
 
         }
         else if(timeLimit-permaTimer <=0){
-            canvas.drawText("You Lose! :(", 350, 700, scorePaint);
+
+            String lostStr = "You Lose! :(";
+            String winAwayStr = "You were at "  + score + " points, you needed " + winCondition;
+            canvas.drawText(lostStr, 150, 500, scorePaint);
+            canvas.drawText(winAwayStr, 150, 540, scorePaint);
         }
         /*
         bubblesArray.add(new Bubble(x,2200));
@@ -318,9 +322,10 @@ public class CanvasView extends SurfaceView {
                     double dx = Math.pow(tempX - x, 2);
                     double dy = Math.pow(tempY - y, 2);
 
-                    if(dx + dy < Math.pow(radius,2))
+                    if(dx + dy < 3.14*(Math.pow(radius,2)))
                     {
-                        score+=25;
+                            score+=50;
+
 
                         Bubble popPointer = bubblesArray.get(i);
                         bubblesArray.remove(i);

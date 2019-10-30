@@ -54,9 +54,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void stopMusic(View v){
-        music = false;
-    }
 
     public void onPause(View v){
         if(music){
