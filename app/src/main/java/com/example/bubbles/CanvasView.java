@@ -27,6 +27,7 @@ public class CanvasView extends SurfaceView {
     private Paint circlePaint;
     private Paint scorePaint;
     private Paint winPaint;
+    private Paint losePaint;
 
     //private float x = 700f; // 0 - (getWidth - 100)
     //private float y = 2200f; //2200
@@ -38,7 +39,7 @@ public class CanvasView extends SurfaceView {
     private int bubbleCount = 0;
     private ArrayList<Bubble> bubblesArray = new ArrayList<Bubble>();
     private int score = 0;
-    private int winCondition = 2000;
+    private int winCondition = 15000;
     private int levelNum = 0;
     // Bubblearray hold all new bubble, need a final variable for radius
 
@@ -114,6 +115,8 @@ public class CanvasView extends SurfaceView {
 
         winPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         winPaint.setTextSize(50);
+        losePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        losePaint.setTextSize(70);
         if(set == null)
             return;
     }
@@ -125,6 +128,7 @@ public class CanvasView extends SurfaceView {
         if (levelNum == 1)
         {
             timeLimit = 3600;
+            winCondition = 2000;
         }
         else if (levelNum == 2)
         {
@@ -232,9 +236,11 @@ public class CanvasView extends SurfaceView {
         else if(timeLimit-permaTimer <=0){
 
             String lostStr = "You Lose! :(";
-            String winAwayStr = "You were at "  + score + " points, you needed " + winCondition;
-            canvas.drawText(lostStr, 150, 500, scorePaint);
-            canvas.drawText(winAwayStr, 150, 540, scorePaint);
+            String winAwayStr = "You were at "  + score + " points";
+            String winAwayStr2 = "You needed " + winCondition + " points";
+            canvas.drawText(lostStr, 50, 500, losePaint);
+            canvas.drawText(winAwayStr, 50, 580, losePaint);
+            canvas.drawText(winAwayStr2, 50, 660, losePaint);
         }
         /*
         bubblesArray.add(new Bubble(x,2200));
