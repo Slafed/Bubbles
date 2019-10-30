@@ -12,6 +12,10 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    public int length;
+    public boolean music = true;
+    MediaPlayer mediaPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -26,14 +30,15 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Denna", "inside setOnClickListener");
                 startActivity(new Intent(MainActivity.this,Pop.class));
 
-
             }
         });
 
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.bubblesound);
+        mediaPlayer = MediaPlayer.create(this, R.raw.bubblesound);
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mediaPlayer.setLooping(true);
+        mediaPlayer.setLooping(music);
         mediaPlayer.start();
+
+
 
     }
 
@@ -47,6 +52,25 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LevelActivity.class);
         intent.putExtra(LevelActivity.SELECTED_LEVEL, "0") ;
         startActivity(intent);
+    }
+
+    public void stopMusic(View v){
+        music = false;
+    }
+
+    public void onPause(View v){
+        if(music){
+            mediaPlayer.pause();
+            length = mediaPlayer.getCurrentPosition();
+            music = false;
+        }
+
+        else{
+            mediaPlayer.seekTo(length);
+            mediaPlayer.start();
+            music = true;
+        }
+
     }
 
 }
