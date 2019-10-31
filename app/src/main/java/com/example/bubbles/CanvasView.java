@@ -26,20 +26,29 @@ public class CanvasView extends SurfaceView {
 
     private Paint circlePaint;
     private Paint scorePaint;
-    private Paint winPaint;
-
+    private Paint willLosePaint;
+    private Paint losePaint;
+    private Paint countPaint;
+    private Paint eCountPaint;
+    private Paint instrPaint;
+    private Paint unitPaint;
     //private float x = 700f; // 0 - (getWidth - 100)
     //private float y = 2200f; //2200
     private int timer = 0;
     private float speed = 20;
+    private float mSpeed = 20;
     private int permaTimer = 0;
-    private int timeLimit = 10;
+    private int timeLimit = 0;
     private  float radius = 100f;
     private int bubbleCount = 0;
     private ArrayList<Bubble> bubblesArray = new ArrayList<Bubble>();
     private int score = 0;
-    private int winCondition = 2000;
+    private int winCondition;
     private int levelNum = 0;
+    private int bgrdOpac = 95;
+    private int bgrdRed  = 0;
+    private int bgrdGreen = 190;
+    private int bgrdBlue = 255;
     // Bubblearray hold all new bubble, need a final variable for radius
 
     public CanvasView(Context context, int level) {
@@ -111,9 +120,32 @@ public class CanvasView extends SurfaceView {
 
         scorePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         scorePaint.setTextSize(100);
+        scorePaint.setColor(Color.parseColor("#22000000"));
 
-        winPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        winPaint.setTextSize(50);
+        willLosePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        willLosePaint.setTextSize(50);
+        willLosePaint.setColor(Color.parseColor("#22000000"));
+
+        losePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        losePaint.setTextSize(70);
+        losePaint.setColor(Color.parseColor("#22000000"));
+
+        countPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        countPaint.setTextSize(500);
+        countPaint.setColor(Color.parseColor("#22000000"));
+
+        eCountPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        eCountPaint.setTextSize(700);
+        eCountPaint.setColor(Color.parseColor("#22000000"));
+
+        instrPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        instrPaint.setTextSize(70);
+        instrPaint.setColor(Color.parseColor("#22000000"));
+
+        unitPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        unitPaint.setTextSize(40);
+        unitPaint.setColor(Color.parseColor("#22000000"));
+
         if(set == null)
             return;
     }
@@ -121,116 +153,243 @@ public class CanvasView extends SurfaceView {
     @Override
     protected void onDraw(Canvas canvas)
     {
-        canvas.drawColor(Color.parseColor("#5EB7FC"));
         if (levelNum == 1)
         {
             timeLimit = 3600;
+            winCondition = 2000;
+
+            if(permaTimer%6 == 0 && permaTimer>300)
+            {
+                if(bgrdGreen<255)
+                    bgrdGreen++;
+                if(bgrdBlue>0)
+                    bgrdBlue--;
+            }
         }
         else if (levelNum == 2)
         {
             timeLimit = 4200;
             winCondition=3000;
+
+            if(permaTimer%6 == 0 && permaTimer>300)
+            {
+                /*if(permaTimer%12==0 && bgrdOpac<130)
+                {
+                    bgrdOpac++;
+                }*/
+                if(bgrdRed<153)
+                    bgrdRed+=2;
+                if(bgrdGreen<253)
+                    bgrdGreen++;
+                if(bgrdBlue>0)
+                    bgrdBlue--;
+            }
         }
         else if (levelNum == 3)
         {
             timeLimit = 5400;
             winCondition=5000;
+
+            if(permaTimer%6 == 0 && permaTimer>300)
+            {
+                /*if(permaTimer%12==0 && bgrdOpac<130)
+                {
+                    bgrdOpac++;
+                }*/
+                if(bgrdRed<253)
+                    bgrdRed+=2;
+                if(bgrdGreen<223)
+                    bgrdGreen++;
+                if(bgrdBlue>0)
+                    bgrdBlue--;
+            }
         }
         else if (levelNum == 4)
         {
             timeLimit = 5400;
             winCondition=8000;
+
+            if(permaTimer%6 == 0 && permaTimer>300)
+            {
+                /*if(permaTimer%12==0 && bgrdOpac<130)
+                {
+                    bgrdOpac++;
+                }*/
+                if(bgrdRed<253)
+                    bgrdRed+=2;
+                if(bgrdGreen>143)
+                    bgrdGreen--;
+                if(bgrdBlue>0)
+                    bgrdBlue--;
+            }
         }
         else if (levelNum == 5)
         {
             timeLimit = 7200;
             winCondition=15000;
+
+            if(permaTimer%6 == 0 && permaTimer>300)
+            {
+                /*if(permaTimer%12==0 && bgrdOpac<130)
+                {
+                    bgrdOpac++;
+                }*/
+                if(bgrdRed<253)
+                    bgrdRed+=2;
+                if(bgrdGreen>83)
+                    bgrdGreen--;
+                if(bgrdBlue>0)
+                    bgrdBlue--;
+            }
         }
         else if (levelNum == 0)
         {
-            timeLimit++;
-            winCondition = 5000000;
+            if (permaTimer == 0)
+            {
+                score = 5000;
+            }
+            if(score>0)
+            {
+                timeLimit=2147483647;
+                winCondition = 2147483647;
+            }
+
+            if(permaTimer%6 == 0)
+            {
+                /*if(permaTimer%12==0 && bgrdOpac<130)
+                {
+                    bgrdOpac++;
+                }*/
+                if(bgrdRed<253)
+                    bgrdRed+=2;
+                if(bgrdGreen>143)
+                    bgrdGreen--;
+                if(bgrdBlue>0)
+                    bgrdBlue--;
+            }
         }
 
+        canvas.drawARGB(bgrdOpac, bgrdRed, bgrdGreen,bgrdBlue);
         if (score<winCondition && timeLimit-permaTimer > 0) {
             permaTimer++;
-
-            String scorStr = "Score: " + score;
-            String winStr = "Reach " + winCondition + " points to win";
-            String loseStr = "You Lose In: " + (timeLimit-permaTimer)/60 + " seconds";
-
-            if(levelNum == 0)
+            if(permaTimer<300)
             {
-                loseStr = " ";
-                winStr = "Dont Let Score Reach 0";
-            }
-            canvas.drawText(scorStr, 150, 125, scorePaint);
-            canvas.drawText(winStr, 150, 1500, winPaint);
-            canvas.drawText(loseStr,  150, 1700, winPaint);
-            timer++;
+                String instrStr = "";
+                String instrStr2 = "";
+                String countStr = "";
 
-            if(levelNum == 1) {
-                speed=20;
-            }
-            else if(levelNum == 2){
-                speed=20;
-
-            }
-            else if(levelNum == 3){
-                speed=20;
-            }
-            else if(levelNum == 4){
-                speed=15;
-            }
-            else if(levelNum == 5){
-                speed=15;
-            }
-            else if(levelNum == 0)
-            {
-                if(speed>10)
+                if(levelNum == 0)
                 {
-                    speed=20 - permaTimer/600;
+                    instrStr = "Survive As Long As Possible!";
+                    instrStr2 = "If score Reaches 0 you lose";
+                    countStr = "" + (300 - permaTimer) / 60;
                 }
+                else
+                {
+                    instrStr = "Reach " + winCondition + " points to win";
+                    countStr = "" + (300 - permaTimer) / 60;
+                }
+
+                canvas.drawText(instrStr, 100, 200, instrPaint);
+                canvas.drawText(instrStr2, 100, 280, instrPaint);
+                canvas.drawText(countStr, 400, 1000, countPaint);
             }
+            else
+            {
 
-            if (timer >= speed) {
-                bubbleCount++;
+                if (levelNum > 0) {
+                    String scorStr = "Score: " + score + " / " + winCondition;
+                    String loseStr = "You Lose In: " + (timeLimit - permaTimer) / 60 + " seconds";
 
-                int randX = (int) Math.floor(Math.random() * getWidth() - 700) + 700;
+                    canvas.drawText(scorStr, 50, 125, scorePaint);
+                    canvas.drawText(loseStr, 150, 700, willLosePaint);
+                }
+                else
+                {
+                    String scorStr = "Score: " + score;
+                    String countTxt = "" + permaTimer/60;
+                    int countX = 50;
+                    String unitStr = "seconds";
 
-                bubblesArray.add(new Bubble(randX, 2200));
+                    canvas.drawText(scorStr, 50, 125, scorePaint);
+                    canvas.drawText(countTxt, countX, 1025,eCountPaint);
+                    //canvas.drawText(unitStr, countX+10, 725,unitPaint);
+                }
 
+                timer++;
 
-                timer = 0;
-            }
-//bruh
+                for (int i = 0; i < bubblesArray.size(); i++) {
+                    if (bubblesArray.get(i).getY() + radius > 0) {
+                        move(bubblesArray.get(i), canvas);
+                    } else {
+                        score -= 50;
+                        Bubble blub = bubblesArray.get(i);
+                        bubblesArray.remove(i);
+                        try {
+                            blub.destroy();
+                        } catch (DestroyFailedException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
-            for (int i = 0; i < bubblesArray.size(); i++) {
-                if (bubblesArray.get(i).getY() + radius > 0) {
-                    move(bubblesArray.get(i), canvas);
-                } else {
-                    score -= 50;
-                    Bubble blub = bubblesArray.get(i);
-                    bubblesArray.remove(i);
-                    try {
-                        blub.destroy();
-                    } catch (DestroyFailedException e) {
-                        e.printStackTrace();
+                }
+
+                if (levelNum == 1) {
+                    speed = 30;
+                } else if (levelNum == 2) {
+                    speed = 20;
+
+                } else if (levelNum == 3) {
+                    speed = 20;
+                } else if (levelNum == 4) {
+                    speed = 15;
+                } else if (levelNum == 5) {
+                    speed = 15;
+                } else if (levelNum == 0) {
+                    if (speed > 12) {
+                        speed = 20 - permaTimer /300;
+                    }
+                    if (score < 0) {
+                        timeLimit = 0;
                     }
                 }
 
+                if (timer >= speed) {
+                    bubbleCount++;
+
+                    int randX = (int) Math.floor(Math.random() * getWidth() - 700) + 700;
+
+                    bubblesArray.add(new Bubble(randX, 2200));
+
+
+                    timer = 0;
+                }
+//bruh
             }
         }
-        else if(score>=winCondition)
+        else if(score>=winCondition ||(levelNum == 0 && score<=0))
         {
-            String winText = "You Win!";
-            String winTime = "With " + (timeLimit-permaTimer)/60 + " second to spare";
-            canvas.drawText(winText, 350, 700, scorePaint);
-            canvas.drawText(winTime, 0, 800, scorePaint);
-
+            if(levelNum==0)
+            {
+                String enduredTxt = "You Survived for " + permaTimer/60 + " seconds";
+                canvas.drawText(enduredTxt, 0, 800, losePaint);
+            }
+            else
+            {
+                String winText = "You Win!";
+                String winTime = "With " + (timeLimit - permaTimer) / 60 + " second to spare";
+                canvas.drawText(winText, 350, 700, scorePaint);
+                canvas.drawText(winTime, 0, 800, scorePaint);
+            }
         }
         else if(timeLimit-permaTimer <=0){
-            canvas.drawText("You Lose! :(", 350, 700, scorePaint);
+
+            String lostStr = "You Lose! :(";
+            String winAwayStr = "You were at "  + score + " points";
+            String winAwayStr2 = "You needed " + winCondition + " points";
+            canvas.drawText(lostStr, 50, 500, losePaint);
+            canvas.drawText(winAwayStr, 50, 580, losePaint);
+            canvas.drawText(winAwayStr2, 50, 660, losePaint);
         }
         /*
         bubblesArray.add(new Bubble(x,2200));
@@ -280,7 +439,9 @@ public class CanvasView extends SurfaceView {
         }
         else if(levelNum == 0)
         {
-            float speed = 10 + permaTimer/1200;
+
+            if(mSpeed <30)
+                mSpeed = 20 + permaTimer/600;
             b.moveY(speed);
         }
        /*
@@ -318,9 +479,10 @@ public class CanvasView extends SurfaceView {
                     double dx = Math.pow(tempX - x, 2);
                     double dy = Math.pow(tempY - y, 2);
 
-                    if(dx + dy < Math.pow(radius,2))
+                    if(dx + dy < 3.14*(Math.pow(radius,2)))
                     {
-                        score+=25;
+                            score+=50;
+
 
                         Bubble popPointer = bubblesArray.get(i);
                         bubblesArray.remove(i);

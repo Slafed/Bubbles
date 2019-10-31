@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     public void onPause(View v){
         if(music){
             mediaPlayer.pause();
@@ -67,12 +68,6 @@ public class MainActivity extends AppCompatActivity {
             music = true;
         }
 
-    }
-
-    public void onBackPressed()
-    {
-        mediaPlayer.stop();
-        //super.onBackPressed();
     }
 
 }
