@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 public class LevelSelectActivity extends AppCompatActivity {
 
@@ -12,6 +14,16 @@ public class LevelSelectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_select);
+
+        Button b = (Button) findViewById(R.id.setBut);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Denna", "inside setOnClickListener");
+                startActivity(new Intent(LevelSelectActivity.this,SettingsActivity.class));
+
+            }
+        });
     }
 
     public void selectedLevel(View v)

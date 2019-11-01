@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Pop" android:theme="@style/AppTheme.CustomTheme"></activity>
+        <activity android:name=".SettingsActivity"
+            android:theme="@style/AppTheme.CustomTheme"></activity>
+        <activity
+            android:name=".Pop"
+            android:theme="@style/AppTheme.CustomTheme" />
         <activity
             android:name=".LevelSelectActivity"
             android:theme="@style/AppThemeBright" />
