@@ -28,17 +28,15 @@ public class Bubble implements Destroyable {
         return x;
     }
 
-    public void setX(float x) {
-        this.x = x;
-    }
+    public void setX(float x) { this.x = x; }
 
     public void moveX(float x)
     {
         this.x += x;
     }
-    public void moveY()
+    public void moveY(float y)
     {
-        this.y -=10;
+        this.y -=y;
     }
 
 

@@ -22,6 +22,7 @@ there will be a variety of bubbles that will rapidly appear which gets harder as
         android:textSize="@dimen/popText"
 
 
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
