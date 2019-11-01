@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void onPause(View v){
+    public void onPauseB(View v){
         if(music){
             mediaPlayer.pause();
             length = mediaPlayer.getCurrentPosition();
@@ -70,8 +70,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void onBackPressed() {
-        mediaPlayer.stop();
+    public void onPause(){
+        super.onPause();
+        mediaPlayer.pause();
+    }
+
+    public void onResume(){
+        super.onResume();
+
+        if(music){
+            mediaPlayer.start();
+        }
+
     }
 
 }
