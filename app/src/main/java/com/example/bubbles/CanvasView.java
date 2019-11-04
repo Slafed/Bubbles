@@ -440,9 +440,9 @@ public class CanvasView extends SurfaceView {
         else if(levelNum == 0)
         {
 
-            if(mSpeed <30)
-                mSpeed = 20 + permaTimer/600;
-            b.moveY(speed);
+            if(mSpeed <135)
+                mSpeed = 20 + permaTimer/180;
+            b.moveY(mSpeed);
         }
        /*
         float tempX = b.getX();

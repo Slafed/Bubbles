@@ -24,6 +24,10 @@ public class LevelActivity extends AppCompatActivity {
 /*
         //canvas = (CanvasView) findViewById(R.id.gameCanvas);
 */
+        if(num == 1)
+        {
+
+        }
     }
 /*
     public void clearCanvas(View v) {
