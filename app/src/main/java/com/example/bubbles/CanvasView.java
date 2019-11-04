@@ -441,6 +441,7 @@ public class CanvasView extends SurfaceView {
         {
 
             if(mSpeed <135)
+                //acceleration
                 mSpeed = 20 + permaTimer/180;
             b.moveY(mSpeed);
         }

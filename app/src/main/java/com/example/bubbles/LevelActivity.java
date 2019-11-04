@@ -30,10 +30,36 @@ public class LevelActivity extends AppCompatActivity {
 */
         if(num == 1)
         {
-
+            mediaPlayer = MediaPlayer.create(this, R.raw.undertale);
+            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            mediaPlayer.start();
+        }
+        else if(num == 2)
+        {
+            mediaPlayer = MediaPlayer.create(this, R.raw.undertale);
+            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            mediaPlayer.start();
+        }
+        else if(num == 3)
+        {
+            mediaPlayer = MediaPlayer.create(this, R.raw.undertale);
+            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            mediaPlayer.start();
+        }
+        else if(num == 4)
+        {
+            mediaPlayer = MediaPlayer.create(this, R.raw.undertale);
+            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            mediaPlayer.start();
         }
 
-        if(num == 5){
+        else if(num == 5){
+            mediaPlayer = MediaPlayer.create(this, R.raw.undertale);
+            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            mediaPlayer.start();
+        }
+        else if(num == 0)
+        {
             mediaPlayer = MediaPlayer.create(this, R.raw.undertale);
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mediaPlayer.start();
@@ -50,6 +76,6 @@ public class LevelActivity extends AppCompatActivity {
 
     public void onPause(){
         super.onPause();
-        mediaPlayer.pause();
+        mediaPlayer.stop();
     }
 }
