@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -14,6 +16,8 @@ public class LevelActivity extends AppCompatActivity {
 
     private CanvasView canvas;
     public static final String SELECTED_LEVEL = "0";
+    MediaPlayer mediaPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +32,12 @@ public class LevelActivity extends AppCompatActivity {
         {
 
         }
+
+        if(num == 5){
+            mediaPlayer = MediaPlayer.create(this, R.raw.undertale);
+            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            mediaPlayer.start();
+        }
     }
 /*
     public void clearCanvas(View v) {
@@ -37,4 +47,9 @@ public class LevelActivity extends AppCompatActivity {
     public void start(View v) {
         canvas.start();
     }*/
+
+    public void onPause(){
+        super.onPause();
+        mediaPlayer.pause();
+    }
 }

@@ -25,7 +25,7 @@ public class Pop extends AppCompatActivity {
         Log.d("Denna", "inside Pop onCreate: width: " + width + " height: " + height);
         getWindow().setLayout((int)(width*.8), (int)(height*.6));
 
-        //commit throw 
+        //commit throw
 
     }
 }
