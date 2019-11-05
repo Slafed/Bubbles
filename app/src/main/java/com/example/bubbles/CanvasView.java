@@ -38,7 +38,7 @@ public class CanvasView extends SurfaceView {
     private float speed = 20;
     private float mSpeed = 20;
     private float mAccl=0;
-    private float mFreq=31;
+    private float mFreq=300;
     private int permaTimer = 0;
     private int timeLimit = 0;
     private  float radius = 100f;
@@ -248,7 +248,7 @@ public class CanvasView extends SurfaceView {
         {
             if (permaTimer == 0)
             {
-                score = 5000;
+                score = 500;
             }
             if(score>0)
             {
@@ -309,7 +309,7 @@ public class CanvasView extends SurfaceView {
                 else
                 {
                     String scorStr = "Score: " + score;
-                    String countTxt = "" + permaTimer/60;
+                    String countTxt = "" + (permaTimer/60-5);
                     int countX = 50;
                     String unitStr = "seconds";
 
@@ -443,11 +443,11 @@ public class CanvasView extends SurfaceView {
         {
 
             if(mSpeed <135)
-                if(mFreq > 30)
+                if(mFreq > 60)
                 {
                     mAccl++;
                     //acceleration
-                    mFreq = (float) ((-.1 * Math.log(Math.exp(mAccl))) + 300);
+                    mFreq = (float) ((-1 * Math.log(Math.exp(mAccl))) + 300);
                 }
                 mSpeed = 20 + permaTimer/mFreq;
             b.moveY(mSpeed);
