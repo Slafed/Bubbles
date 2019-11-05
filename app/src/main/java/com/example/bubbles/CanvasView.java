@@ -37,6 +37,8 @@ public class CanvasView extends SurfaceView {
     private int timer = 0;
     private float speed = 20;
     private float mSpeed = 20;
+    private float mAccl=0;
+    private float mFreq=31;
     private int permaTimer = 0;
     private int timeLimit = 0;
     private  float radius = 100f;
@@ -441,8 +443,13 @@ public class CanvasView extends SurfaceView {
         {
 
             if(mSpeed <135)
-                //acceleration
-                mSpeed = 20 + permaTimer/180;
+                if(mFreq > 30)
+                {
+                    mAccl++;
+                    //acceleration
+                    mFreq = (float) ((-.1 * Math.log(Math.exp(mAccl))) + 300);
+                }
+                mSpeed = 20 + permaTimer/mFreq;
             b.moveY(mSpeed);
         }
        /*
