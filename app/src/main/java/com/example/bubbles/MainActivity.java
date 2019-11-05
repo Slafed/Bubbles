@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean music = true;
     MediaPlayer mediaPlayer;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     }
 
     public void campaign(View v){
@@ -60,13 +63,19 @@ public class MainActivity extends AppCompatActivity {
             mediaPlayer.pause();
             length = mediaPlayer.getCurrentPosition();
             music = false;
+            Button b2 = findViewById(R.id.musicButton);
+            b2.setBackgroundResource(R.drawable.audiomute);
         }
 
         else{
             mediaPlayer.seekTo(length);
             mediaPlayer.start();
             music = true;
+            Button b2 = findViewById(R.id.musicButton);
+            b2.setBackgroundResource(R.drawable.audio);
         }
+
+
 
     }
 
