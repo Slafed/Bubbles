@@ -2,16 +2,17 @@ package com.example.bubbles;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -32,9 +33,12 @@ public class CanvasView extends SurfaceView {
     private Paint eCountPaint;
     private Paint instrPaint;
     private Paint unitPaint;
+
+
     //private float x = 700f; // 0 - (getWidth - 100)
     //private float y = 2200f; //2200
     private int timer = 0;
+    private int touchedAgo = 0;
     private float speed = 20;
     private float mSpeed = 20;
     private float mAccl=0;
@@ -51,6 +55,30 @@ public class CanvasView extends SurfaceView {
     private int bgrdRed  = 0;
     private int bgrdGreen = 190;
     private int bgrdBlue = 255;
+
+    private Bitmap buFrame1;
+    private Bitmap buFrame2;
+    private Bitmap buFrame3;
+    private Bitmap buFrame4;
+    private Bitmap buFrame5;
+    private Bitmap buFrame6;
+    private Bitmap buFrame7;
+    private Bitmap buFrame8;
+    private Bitmap buFrame9;
+    private Bitmap buFrame10;
+    private Bitmap buFrame11;
+    private Bitmap buFrame12;
+    private Bitmap buFrame13;
+    private Bitmap buFrame14;
+    private Bitmap buFrame15;
+    private Bitmap buFrame16;
+    private Bitmap buFrame17;
+    private Bitmap buFrame18;
+    private Bitmap buFrame19;
+    private Bitmap buFrame20;
+
+
+
     // Bubblearray hold all new bubble, need a final variable for radius
 
     public CanvasView(Context context, int level) {
@@ -118,7 +146,7 @@ public class CanvasView extends SurfaceView {
     private void init(@Nullable AttributeSet set)
     {
         circlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        circlePaint.setColor(Color.parseColor("#FFFFFF"));
+        circlePaint.setColor(Color.parseColor("#00000000"));
 
         scorePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         scorePaint.setTextSize(100);
@@ -147,6 +175,28 @@ public class CanvasView extends SurfaceView {
         unitPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         unitPaint.setTextSize(40);
         unitPaint.setColor(Color.parseColor("#22000000"));
+
+        buFrame1 = BitmapFactory.decodeResource(getResources(), R.drawable.ba1);
+        buFrame2 = BitmapFactory.decodeResource(getResources(), R.drawable.ba2);
+        buFrame3 = BitmapFactory.decodeResource(getResources(), R.drawable.ba3);
+        buFrame4 = BitmapFactory.decodeResource(getResources(), R.drawable.ba4);
+        buFrame5 = BitmapFactory.decodeResource(getResources(), R.drawable.ba5);
+        buFrame6 = BitmapFactory.decodeResource(getResources(), R.drawable.ba6);
+        buFrame7 = BitmapFactory.decodeResource(getResources(), R.drawable.ba7);
+        buFrame8 = BitmapFactory.decodeResource(getResources(), R.drawable.ba8);
+        buFrame9 = BitmapFactory.decodeResource(getResources(), R.drawable.ba9);
+        buFrame10 = BitmapFactory.decodeResource(getResources(), R.drawable.ba10);
+        buFrame11 = BitmapFactory.decodeResource(getResources(), R.drawable.ba11);
+        buFrame12 =  BitmapFactory.decodeResource(getResources(), R.drawable.ba12);
+        buFrame13 = BitmapFactory.decodeResource(getResources(), R.drawable.ba13);
+        buFrame14 = BitmapFactory.decodeResource(getResources(), R.drawable.ba14);
+        buFrame15 = BitmapFactory.decodeResource(getResources(), R.drawable.ba15);
+        buFrame16 = BitmapFactory.decodeResource(getResources(), R.drawable.ba16);
+        buFrame17 = BitmapFactory.decodeResource(getResources(), R.drawable.ba17);
+        buFrame18 = BitmapFactory.decodeResource(getResources(), R.drawable.ba18);
+        buFrame19 = BitmapFactory.decodeResource(getResources(), R.drawable.ba19);
+        buFrame20 = BitmapFactory.decodeResource(getResources(), R.drawable.ba20);
+
 
         if(set == null)
             return;
@@ -323,6 +373,19 @@ public class CanvasView extends SurfaceView {
                 for (int i = 0; i < bubblesArray.size(); i++) {
                     if (bubblesArray.get(i).getY() + radius > 0) {
                         move(bubblesArray.get(i), canvas);
+
+                        if((permaTimer-bubblesArray.get(i).getPopTime()) >57
+                                && (permaTimer-bubblesArray.get(i).getPopTime()) != permaTimer)
+                        {
+                            Bubble popPointer = bubblesArray.get(i);
+
+                            bubblesArray.remove(i);
+                            try {
+                                popPointer.destroy();
+                            } catch (DestroyFailedException e) {
+
+                            }
+                        }
                     } else {
                         score -= 50;
                         Bubble blub = bubblesArray.get(i);
@@ -361,7 +424,7 @@ public class CanvasView extends SurfaceView {
 
                     int randX = (int) Math.floor(Math.random() * getWidth() - 700) + 700;
 
-                    bubblesArray.add(new Bubble(randX, 2200));
+                    bubblesArray.add(new Bubble(randX, 2200,0, false));
 
 
                     timer = 0;
@@ -417,67 +480,173 @@ public class CanvasView extends SurfaceView {
 
     public void move(Bubble b, Canvas canvas)
     {
-        int rand = (int)Math.floor(Math.random()*101);
+        int radiusI = (int) (1.1 * radius);
+        int buImgX = (int) (b.getX() - radius);
+        int buImgY = (int) (b.getY() - radius);
 
-        if(levelNum == 1)
-        {
-            b.moveY(10);
-        }
-        else if(levelNum == 2)
-        {
-            b.moveY(15);
-        }
-        else if(levelNum == 3)
-        {
-            b.moveY(20);
-        }
-        else if(levelNum == 4)
-        {
-            b.moveY(25);
-        }
-        else if(levelNum == 5)
-        {
-            b.moveY(30);
-        }
-        else if(levelNum == 0)
-        {
+        if(!b.getPopped()) {
+            int rand = (int) Math.floor(Math.random() * 101);
 
-            if(mSpeed <135)
-                if(mFreq > 60)
-                {
-                    mAccl++;
-                    //acceleration
-                    mFreq = (float) ((-1 * Math.log(Math.exp(mAccl))) + 300);
-                }
-                mSpeed = 20 + permaTimer/mFreq;
-            b.moveY(mSpeed);
-        }
+            if (levelNum == 1) {
+                b.moveY(10);
+            } else if (levelNum == 2) {
+                b.moveY(15);
+            } else if (levelNum == 3) {
+                b.moveY(20);
+            } else if (levelNum == 4) {
+                b.moveY(25);
+            } else if (levelNum == 5) {
+                b.moveY(30);
+            } else if (levelNum == 0) {
+
+                if (mSpeed < 135)
+                    if (mFreq > 60) {
+                        mAccl++;
+                        //acceleration
+                        mFreq = (float) ((-1 * Math.log(Math.exp(mAccl))) + 300);
+                    }
+                mSpeed = 20 + permaTimer / mFreq;
+                b.moveY(mSpeed);
+            }
+
+
        /*
         float tempX = b.getX();
         float tempY = b.getY() - 10;
         */
 
-        if((b.getX()-100) < 0)
-            b.moveX(10);
-        else if((b.getX()+100) > getWidth())
-            b.moveX(-10);
-        else if(rand < 50)
-            b.moveX(10);
-        else
-            b.moveX(-10);
+            if ((b.getX() - 100) < 0)
+                b.moveX(10);
+            else if ((b.getX() + 100) > getWidth())
+                b.moveX(-10);
+            else if (rand < 50)
+                b.moveX(10);
+            else
+                b.moveX(-10);
 
             canvas.drawCircle(b.getX(), b.getY(), radius, circlePaint);
 
+            buFrame1 = getResizedBitmap(buFrame1, 2 * radiusI, 2 * radiusI);
+            canvas.drawBitmap(buFrame1, buImgX, buImgY, null);
+        }
+        else
+        {
+            int frameNum = (int) (permaTimer-b.getPopTime());
+
+            if(frameNum < 3)
+            {
+                buFrame2=getResizedBitmap(buFrame2, 2 * radiusI, 2 * radiusI);
+                canvas.drawBitmap(buFrame2, buImgX, buImgY, null);
+            }
+            else if(frameNum < 6)
+            {
+                buFrame3=getResizedBitmap(buFrame3, 2 * radiusI, 2 * radiusI);
+                canvas.drawBitmap(buFrame3, buImgX, buImgY, null);
+            }
+            else if(frameNum < 9)
+            {
+                buFrame4=getResizedBitmap(buFrame4, 2 * radiusI, 2 * radiusI);
+                canvas.drawBitmap(buFrame4, buImgX, buImgY, null);
+            }
+            else if(frameNum < 12)
+            {
+                buFrame5=getResizedBitmap(buFrame5, 2 * radiusI, 2 * radiusI);
+                canvas.drawBitmap(buFrame5, buImgX, buImgY, null);
+            }
+            else if(frameNum < 15)
+            {
+                buFrame6=getResizedBitmap(buFrame6, 2 * radiusI, 2 * radiusI);
+                canvas.drawBitmap(buFrame6, buImgX, buImgY, null);
+            }
+            else if(frameNum < 18)
+            {
+                buFrame7=getResizedBitmap(buFrame7, 2 * radiusI, 2 * radiusI);
+                canvas.drawBitmap(buFrame7, buImgX, buImgY, null);
+            }
+            else if(frameNum < 21)
+            {
+                buFrame8=getResizedBitmap(buFrame8, 2 * radiusI, 2 * radiusI);
+                canvas.drawBitmap(buFrame8, buImgX, buImgY, null);
+            }
+            else if(frameNum < 24)
+            {
+                buFrame9=getResizedBitmap(buFrame9, 2 * radiusI, 2 * radiusI);
+                canvas.drawBitmap(buFrame9, buImgX, buImgY, null);
+            }
+            else if(frameNum < 27)
+            {
+                buFrame10=getResizedBitmap(buFrame10, 2 * radiusI, 2 * radiusI);
+                canvas.drawBitmap(buFrame10, buImgX, buImgY, null);
+            }
+            else if(frameNum < 30)
+            {
+                buFrame11=getResizedBitmap(buFrame11, 2 * radiusI, 2 * radiusI);
+                canvas.drawBitmap(buFrame11, buImgX, buImgY, null);
+            }
+            else if(frameNum < 33)
+            {
+                buFrame12=getResizedBitmap(buFrame12, 2 * radiusI, 2 * radiusI);
+                canvas.drawBitmap(buFrame12, buImgX, buImgY, null);
+            }
+            else if(frameNum < 36)
+            {
+                buFrame13=getResizedBitmap(buFrame13, 2 * radiusI, 2 * radiusI);
+                canvas.drawBitmap(buFrame13, buImgX, buImgY, null);
+            }
+            else if(frameNum < 39)
+            {
+                buFrame14=getResizedBitmap(buFrame14, 2 * radiusI, 2 * radiusI);
+                canvas.drawBitmap(buFrame14, buImgX, buImgY, null);
+            }
+            else if(frameNum < 42)
+            {
+                buFrame15=getResizedBitmap(buFrame15, 2 * radiusI, 2 * radiusI);
+                canvas.drawBitmap(buFrame15, buImgX, buImgY, null);
+            }
+            else if(frameNum < 45)
+            {
+                buFrame16=getResizedBitmap(buFrame16, 2 * radiusI, 2 * radiusI);
+                canvas.drawBitmap(buFrame16, buImgX, buImgY, null);
+            }
+            else if(frameNum < 48)
+            {
+                buFrame17=getResizedBitmap(buFrame17, 2 * radiusI, 2 * radiusI);
+                canvas.drawBitmap(buFrame17, buImgX, buImgY, null);
+            }
+            else if(frameNum < 51)
+            {
+                buFrame18=getResizedBitmap(buFrame18, 2 * radiusI, 2 * radiusI);
+                canvas.drawBitmap(buFrame18, buImgX, buImgY, null);
+            }
+            else if(frameNum < 54)
+            {
+                buFrame19=getResizedBitmap(buFrame19, 2 * radiusI, 2 * radiusI);
+                canvas.drawBitmap(buFrame19, buImgX, buImgY, null);
+            }
+            else
+            {
+                buFrame20=getResizedBitmap(buFrame20, 2 * radiusI, 2 * radiusI);
+                canvas.drawBitmap(buFrame20, buImgX, buImgY, null);
+
+            }
+
+        }
     }
 
     public boolean onTouchEvent(MotionEvent event){
         boolean value = super.onTouchEvent(event);
 
-        switch(event.getAction()) {
-            case MotionEvent.ACTION_DOWN:{
+        int pointerIndex = event.getActionIndex();
+        int pointerId = event.getPointerId(pointerIndex);
+        int maskedAtion = event.getActionMasked();
+        switch(maskedAtion) {
 
-                float tempX = event.getX();
-                float tempY = event.getY();
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_POINTER_DOWN:{
+
+
+                float tempX = event.getX(pointerIndex);
+                float tempY = event.getY(pointerIndex);
 
                 for(int i = 0; i < bubblesArray.size(); i++)
                 {
@@ -493,12 +662,8 @@ public class CanvasView extends SurfaceView {
 
 
                         Bubble popPointer = bubblesArray.get(i);
-                        bubblesArray.remove(i);
-                        try {
-                            popPointer.destroy();
-                        } catch (DestroyFailedException e) {
-
-                        }
+                        popPointer.setPopTime(permaTimer);
+                        popPointer.setPopped(true);
 
                         return true;
                     }
@@ -514,6 +679,18 @@ public class CanvasView extends SurfaceView {
             }
         }
         return value;
+    }
+
+    private Bitmap getResizedBitmap(Bitmap image, int reqWidth, int reqHeight)
+    {
+        Matrix matrix = new Matrix();
+
+        RectF src = new RectF(0, 0, image.getWidth(), image.getHeight()) ;
+        RectF dst = new RectF(0, 0, reqWidth, reqHeight) ;
+
+        matrix.setRectToRect(src, dst, Matrix.ScaleToFit.CENTER);
+
+        return Bitmap.createBitmap(image,0, 0, image.getWidth(), image.getHeight(), matrix, true);
     }
 
 }
