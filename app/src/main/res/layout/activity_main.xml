@@ -53,7 +53,7 @@
         android:id="@+id/endlessButton"
         android:layout_width="@dimen/buttonWidth"
         android:layout_height="@dimen/buttonHeight"
-        android:background="@drawable/bube"
+        android:background="@drawable/endlessbutton"
         android:onClick="endless"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
