@@ -15,7 +15,7 @@ public class LevelSelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_select);
 
-        Button b = (Button) findViewById(R.id.setBut);
+       /* Button b = (Button) findViewById(R.id.setBut);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -23,7 +23,7 @@ public class LevelSelectActivity extends AppCompatActivity {
                 startActivity(new Intent(LevelSelectActivity.this,SettingsActivity.class));
 
             }
-        });
+        });*/
     }
 
     public void selectedLevel(View v)
